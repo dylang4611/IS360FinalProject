@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>A First Web Page</title>
+    <style>
+        body {
+            background-color: lightgray;
+            font-family: Arial;
+            width: 1024px;
+            margin: auto;
+        }
+
+
+        h1 {
+            color: royalblue;
+        }
+
+        p {
+             color: navy;
+        }
+    </style>
+    <script>
+        let inputF = null;
+        let spnoutC = null;
+        function bodyOnLoad() {
+            inputF = document.getElementById("txtInputF");
+            spnoutC = document.getElementById("spnOutput");
+        }
+        function btnFClick() {
+            let outputNum;
+            let outputString;
+            let tempF = parseFloat(inputF.value);
+            // F - 32 * 5/9
+            if (!isNaN(tempF)) {
+                outputNum = (tempF - 32) * 5 / 9;
+                outputString = inputF.value + " Fahrenheit is (F) " + outputNum.toFixed(2) + " (C)";
+            }
+            else {
+                outputString = "Input not a valid number.";
+            }
+            spnoutC.innerHTML = outputString;
+        }
+        function selCommonOnChange() {
+            let selCommon = document.getElementById("selCommon")
+            inputF.value = selCommon.value.toString();
+        }
+    </script>
+</head>
+<body onload="bodyOnLoad()">
+
+    
+    <h1>Fahrenheit to Celsius Calculator</h1>
+    <h2>Enter Input</h2>
+    <select id="selCommon" onchange="selCommonOnChange()">
+        <option value="-459.67">Kelvin</option>
+        <option value="32">Water Freezing</option>
+        <option value="212">Water Boiling</option>
+    </select>
+    <label for="txtInputF">Enter Temperature (F)</label>
+    <input id="txtInputF" type="text" />
+    <input type="button" value="Calculate" onclick="btnFClick()" />
+
+    <h2>Results:</h2>
+    <span id="spnOutput"></span>
+    <script>
+        let d = new Date();
+        document.write("<hr />")
+        document.write(d.toString());
+    </script>
+</body>
+</html>
